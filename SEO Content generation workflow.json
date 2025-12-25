@@ -1,0 +1,1482 @@
+{
+  "name": "SEO Content generation workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "           Trending Keyword Search   ",
+        "height": 80,
+        "width": 352
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        640,
+        -432
+      ],
+      "id": "f0f70fea-fded-444d-9ca3-ab86cada89a5",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "          Article Generator\n",
+        "height": 80,
+        "width": 352,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        688,
+        -80
+      ],
+      "id": "907a7a15-a24a-45e6-ae2e-3a48f427928d",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "         Linkedin Post Generator\n\n",
+        "height": 80,
+        "width": 352,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        688,
+        272
+      ],
+      "id": "774feb5c-1f17-460e-bb87-1ed5ce16ec61",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "              \n                      X Content Generator\n          ",
+        "height": 80,
+        "width": 400,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        704,
+        592
+      ],
+      "id": "7e5432cb-c2e9-499e-9f20-6f3c397140b9",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.body.step }}",
+                    "rightValue": "keywords",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "a787dffe-2167-4756-823c-97893a061e35"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "1c724fc6-0615-4043-9f64-91539c8404cc",
+                    "leftValue": "={{ $json.body.step }}",
+                    "rightValue": "article",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "451d2e42-bbb1-47b2-afed-4e100e3d64ae",
+                    "leftValue": "linkedin",
+                    "rightValue": "={{ $json.body.step }}",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "f20019fd-cd54-44bd-aed7-1a677a97032e",
+                    "leftValue": "twitter",
+                    "rightValue": "={{ $json.body.step }}",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "5ce874d9-6c37-49ce-bc7d-4b9f945de087",
+                    "leftValue": "case-study",
+                    "rightValue": "={{ $json.body.step }}",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        -656,
+        160
+      ],
+      "id": "5116b85e-829d-42ab-986f-13d91a3ac5e4",
+      "name": "Content Type Router"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "generate-keywords",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -944,
+        208
+      ],
+      "id": "0e33bfa4-8b50-4b68-9014-60e7fff650a7",
+      "name": "Content Request Intake",
+      "webhookId": "d41881c3-e567-4a33-8ed9-cd30c7d7137c"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "10f849ff-2150-4580-b940-d0ffa72bf92f",
+              "leftValue": "={{$json.body.campaignDescription}}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "c6e07e59-24de-4040-b223-1bb85f71707e",
+              "leftValue": "={{$json.body.targetAudience}}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -144,
+        -272
+      ],
+      "id": "4de8763c-8cf0-41dd-8069-6d498360b0e2",
+      "name": "Validate Campaign Input"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "8703938b-a347-49dc-a944-f70348b3a06f",
+              "name": "body.campaignDescription",
+              "value": "={{ $json.body.campaignDescription }}",
+              "type": "string"
+            },
+            {
+              "id": "d313d310-757e-4180-aae9-7de9225aff9d",
+              "name": "body.targetAudience",
+              "value": "={{ $json.body.targetAudience }}",
+              "type": "string"
+            },
+            {
+              "id": "5a867c65-9417-43d3-a11a-bcd4e37271fb",
+              "name": "body.tone",
+              "value": "={{ $json.body.tone }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        304,
+        -288
+      ],
+      "id": "f0f308cc-7bfc-4c1a-bbb4-0648ae1e1fe6",
+      "name": "Set Campaign Data"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"status\": \"error\",\n  \"message\": \"Campaign description and target audience are required\"\n}\n{\n  \"status\": \"error\",\n  \"message\": \"Campaign description and target audience are required\"\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        80,
+        -160
+      ],
+      "id": "a004aeed-b3f8-4be2-8cc6-b6881a98a92b",
+      "name": "Campaign Error"
+    },
+    {
+      "parameters": {
+        "model": "sonar-reasoning",
+        "messages": {
+          "message": [
+            {
+              "content": "=You are an SEO keyword assistant.\n\nYour task is to generate EXACTLY ONE Google search query.\n\nContext:\nCampaign Description:\n{{ $json.body.campaignDescription }}\n\nTarget Audience:\n{{ $json.body.targetAudience }}\n\nTone:\n{{ $json.body.tone }}\n\nRules (MANDATORY):\n- Return ONLY ONE search query\n- Maximum 8 words\n- Plain text only\n- No explanations\n- No brand names\n- No punctuation\n- No bullet points\n- No full sentences\n- Do NOT describe the product\n- Do NOT explain anything\n\nOutput format:\n<single search query only>\n"
+            }
+          ]
+        },
+        "options": {},
+        "requestOptions": {}
+      },
+      "type": "n8n-nodes-base.perplexity",
+      "typeVersion": 1,
+      "position": [
+        576,
+        -288
+      ],
+      "id": "7c0bb12d-e9a3-49cc-834f-56fcc5531aea",
+      "name": "LLM Query",
+      "credentials": {
+        "perplexityApi": {
+          "id": "AGq1w6mYmxJnoEjV",
+          "name": "Perplexity account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extract clean search query from Sonar Reasoning output\n\nlet content = \"\";\n\n// 1️⃣ Safely get model output\nif ($json.choices && $json.choices[0]?.message?.content) {\n  content = $json.choices[0].message.content;\n}\n\n// 2️⃣ Remove <think>...</think> block\ncontent = content.replace(/<think>[\\s\\S]*?<\\/think>/gi, \"\").trim();\n\n// 3️⃣ Take only the last non-empty line\nlet query = content\n  .split(\"\\n\")\n  .map(line => line.trim())\n  .filter(Boolean)\n  .pop();\n\n// 4️⃣ Defensive cleanup\nquery = query\n  .toLowerCase()\n  .replace(/[^a-z0-9\\s]/g, \"\")\n  .trim()\n  .split(\" \")\n  .slice(0, 8)\n  .join(\" \");\n\n// 5️⃣ Fallback safety\nif (!query) {\n  query = \"ai email marketing for small businesses\";\n}\n\nreturn [\n  {\n    json: {\n      query\n    }\n  }\n];\n\n\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        816,
+        -288
+      ],
+      "id": "377d7345-a191-4c0d-8d7f-c6d950844695",
+      "name": "Clean Query"
+    },
+    {
+      "parameters": {
+        "url": "=https://duckduckgo.com/ac/\n\n",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "q",
+              "value": "={{ $json.query }}"
+            },
+            {
+              "name": "type",
+              "value": "list"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1040,
+        -288
+      ],
+      "id": "8f16422f-11f1-43e5-867f-576e0c7fd5c5",
+      "name": "Fetch Suggestions"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Google Suggest (client=firefox) parser\n// Ensures at least 5 keyword outputs\n\nconst raw = items[0].json.data;\n\n// 1️⃣ Parse JSON string safely\nlet parsed;\ntry {\n  parsed = JSON.parse(raw);\n} catch (e) {\n  return [];\n}\n\n// 2️⃣ Validate structure\nif (!Array.isArray(parsed) || !Array.isArray(parsed[1])) {\n  return [];\n}\n\n// 3️⃣ Extract suggestions\nlet suggestions = parsed[1];\n\n// 4️⃣ Normalize & deduplicate\nsuggestions = [...new Set(\n  suggestions\n    .map(k => k.toLowerCase().trim())\n    .filter(k => k.length > 3)\n)];\n\n// 5️⃣ Ensure minimum 5 keywords\nconst fallbackKeywords = [\n  \"ai email marketing tools\",\n  \"email marketing automation ai\",\n  \"best ai tools for marketing\",\n  \"ai marketing tools for business\",\n  \"email marketing software ai\"\n];\n\nlet i = 0;\nwhile (suggestions.length < 5 && i < fallbackKeywords.length) {\n  if (!suggestions.includes(fallbackKeywords[i])) {\n    suggestions.push(fallbackKeywords[i]);\n  }\n  i++;\n}\n\n// 6️⃣ Limit to max 8 keywords\nsuggestions = suggestions.slice(0, 8);\n\n// 7️⃣ Return as multiple n8n items\nreturn suggestions.map(keyword => ({\n  json: {\n    keyword\n  }\n}));\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1248,
+        -288
+      ],
+      "id": "20bca55a-9c3e-4750-a6ff-87e9283a092f",
+      "name": "Parse Keywords"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "keyword"
+            }
+          ]
+        },
+        "options": {
+          "mergeLists": true
+        }
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        1456,
+        -288
+      ],
+      "id": "d45ab3e0-2e03-4b68-83e6-70f22331ad36",
+      "name": "Merge Keywords"
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        1696,
+        -288
+      ],
+      "id": "d82ce247-3b8f-43da-9e81-8872ccb9a156",
+      "name": "Send Keywords"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $json.body || {};\n\nreturn [{\n  json: {\n    ...$json,\n    hasKeywords:\n      Array.isArray(body.keywords) &&\n      body.keywords.length > 0\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -112,
+        64
+      ],
+      "id": "ffdd6072-6fb4-49e2-a3a6-1037205e4a09",
+      "name": "Has Keywords"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "5c15e762-06a3-4d0c-ae61-20a4aca88eb8",
+              "leftValue": "={{ $json.body.campaignDescription }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "37f29df0-8e58-4e33-aa2b-4a6fd135e9ef",
+              "leftValue": "={{ $json.body.targetAudience }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "93471caf-3a37-4e1e-83dd-eee47f45a6d1",
+              "leftValue": "={{ $json.body.tone }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "ae6bdf7e-9608-40c4-add9-627062829012",
+              "leftValue": "={{ $json.hasKeywords }}",
+              "rightValue": "true",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        112,
+        64
+      ],
+      "id": "d74ed8ef-27e7-48e9-a723-d855925462fe",
+      "name": "Check Article Data"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $json.body;\n\nreturn [{\n  json: {\n    campaignDescription: body.campaignDescription,\n    targetAudience: body.targetAudience,\n    tone: body.tone,\n\n    // Convert keyword array → SEO string\n    keywords: body.keywords.join(\", \"),\n\n    // Optional controls\n    wordCount: body.wordCount || 1200,\n    articleType: body.articleType || \"blog\"\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        464,
+        48
+      ],
+      "id": "e2d034f3-453b-4ed3-b38b-2f91e83e59e8",
+      "name": "Prepare Article Input"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        320,
+        192
+      ],
+      "id": "453048aa-7825-4243-ac5a-5c88ce8af47c",
+      "name": "Article Error"
+    },
+    {
+      "parameters": {
+        "messages": {
+          "message": [
+            {
+              "content": "=You are a professional content writer with 10+ years of experience writing long-form SEO articles for real businesses.\n\nYour task is to write a deeply informative, human-sounding, and engaging article that feels written by an expert—not by AI.\n\n══════════════════════════════════\nCONTEXT\n══════════════════════════════════\n\n\nCampaign Description:\n{{ $json.campaignDescription }}\n\nTarget Audience:\n{{ $json.targetAudience }}\n\n\nTone:\n{{ $json.tone }}\n\nPrimary SEO Keywords:\n{{ $json.keywords }}\n\nDesired Length:\n{{ $json.wordCount }}+ words\n\n══════════════════════════════════\nWRITING STYLE (VERY IMPORTANT)\n══════════════════════════════════\n\nWrite in a natural, conversational, human tone\n\nSound confident, experienced, and helpful\n\nAvoid robotic phrasing and repetitive patterns\n\nUse short and medium-length sentences\n\nUse paragraphs of 2–5 sentences and avoid walls of text\n\nVary sentence openings and structures to avoid repetition\n\nMix storytelling, explanations, and practical insights\n\nWrite as if explaining things to a real person in this target audience\n\nAim for a clear B2–C1 English level (professional but accessible)\n\nDo NOT sound promotional or salesy\n\nNo buzzwords or hype language\n\nNo AI disclaimers or mentions\n\n══════════════════════════════════\nSTRUCTURE REQUIREMENTS\n══════════════════════════════════\n\nFollow this structure strictly:\n\nSEO-optimized, compelling H1 title that includes the main keyword naturally\n\nStrong introduction that hooks the reader and explains why this topic matters for the target audience\n\nOptional short table of contents for longer articles (over{{ $json.wordCount }} words), if helpful for navigation\n\n5–7 detailed H2 sections, each focused on a clear, distinct subtopic (no overlapping sections)\n\nUse H3 subheadings where clarity or step-by-step explanation is needed\n\nUse bullet points ONLY when they genuinely add clarity or scannability\n\nInclude at least one concrete real-world example or scenario in each major H2 section where relevant\n\nAddress common pain points, objections, and questions the target audience typically has\n\nClear, thoughtful conclusion with practical takeaways or next steps\n\n══════════════════════════════════\nSEO RULES (MANDATORY)\n══════════════════════════════════\n\nUse all provided keywords naturally in the article\n\nInclude the primary keyword (or a very close variation) in:\n\nThe H1 title\n\nThe first paragraph of the introduction\n\nAt least one H2 heading\n\nThe conclusion\n\nDo NOT keyword stuff\n\nUse synonyms and semantic variations of the main keywords throughout\n\nNaturally cover related concepts, entities, and questions people search for around this topic\n\nOptimize for readability, dwell time, and user value (not just for bots)\n\nWrite for humans first, SEO second\n\n══════════════════════════════════\nFACTUAL ACCURACY & NUMBERS\n══════════════════════════════════\n\nDo NOT invent precise statistics, percentages, dates, or monetary amounts\n\nOnly use specific numbers if they are provided in the context or clearly marked as illustrative (e.g., “for example” or “imagine a case where…”)\n\nPrefer approximate, realistic wording instead of fabricated precision (e.g., “can significantly increase conversions” instead of “increases conversions by 26%”)\n\nAvoid citing studies, reports, or surveys by name unless they are explicitly provided in the input\n\n══════════════════════════════════\nLANGUAGE & REPETITION RULES\n══════════════════════════════════\n\nDo not repeat the exact same keyword phrase more than 2–3 times; use close variations instead\n\nVary phrasing for key concepts (e.g., alternate between “AI marketing tools”, “automation platforms”, “email workflows”, etc., where appropriate)\n\nAvoid copy-paste style repetition of sentences or structures\n\nUse transitions to keep the narrative flowing naturally between sections\n\n══════════════════════════════════\nSTRICT RULES\n══════════════════════════════════\n\nNo brand names, tools, or company names, unless explicitly provided in the input\n\nNo product promotions or calls to buy anything\n\nNo emojis\n\nNo markdown code blocks\n\nNo explanations about what you are doing\n\nNo extra commentary before or after the article\n\nDo not mention that the content is generated, assisted, or reviewed by AI\n\n══════════════════════════════════\nOUTPUT FORMAT\n══════════════════════════════════\n\nReturn ONLY the complete article content, with proper headings and subheadings.\n\nDo not include labels like “Article”, “Outline”, or “Introduction”."
+            }
+          ]
+        },
+        "simplify": true,
+        "options": {},
+        "requestOptions": {}
+      },
+      "type": "n8n-nodes-base.perplexity",
+      "typeVersion": 1,
+      "position": [
+        736,
+        48
+      ],
+      "id": "5bb76d03-bb42-4dab-a952-b35d26ae683c",
+      "name": "LLM Article",
+      "credentials": {
+        "perplexityApi": {
+          "id": "AGq1w6mYmxJnoEjV",
+          "name": "Perplexity account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "let content = \"\";\n\n// ✅ Correct extraction for n8n Message a model\nif (typeof $json.message === \"string\" && $json.message.trim()) {\n  content = $json.message;\n}\n\n// ❌ Safety fallback (never silent)\nif (!content) {\n  throw new Error(\"Article content missing from model output\");\n}\n\n// ✅ Optional cleanup (safe)\ncontent = content\n  .replace(new RegExp(\"<think>[\\\\s\\\\S]*?<\\\\/think>\", \"gi\"), \"\")\n  .replace(/\\[\\d+\\]/g, \"\")\n  .trim();\n\nreturn [\n  {\n    json: {\n      article: content,\n      wordCount: content.split(/\\s+/).length\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        944,
+        48
+      ],
+      "id": "a97abb39-7092-456e-b9ea-93cb3f6fdee8",
+      "name": "Clean Article"
+    },
+    {
+      "parameters": {
+        "jsCode": "let article = $json.article;\n\n// Headings\narticle = article\n  .replace(/^### (.*)$/gm, '<h3>$1</h3>')\n  .replace(/^## (.*)$/gm, '<h2>$1</h2>')\n  .replace(/^# (.*)$/gm, '<h1>$1</h1>');\n\n// Bold\narticle = article.replace(/\\*\\*(.*?)\\*\\*/g, '<strong>$1</strong>');\n\n// Lists\narticle = article.replace(/^- (.*)$/gm, '<li>$1</li>');\narticle = article.replace(/(<li>.*<\\/li>)/gs, '<ul>$1</ul>');\n\n// Paragraphs\narticle = article\n  .split('\\n\\n')\n  .map(p => p.startsWith('<h') || p.startsWith('<ul') ? p : `<p>${p}</p>`)\n  .join('\\n');\n\nreturn [\n  {\n    json: {\n      htmlArticle: article,\n      wordCount: $json.wordCount\n    }\n  }\n];\n\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1184,
+        48
+      ],
+      "id": "08fb0ff5-3b3c-4743-b6d4-cc44fbf9e65f",
+      "name": "Format Article"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        1456,
+        48
+      ],
+      "id": "a37bb52f-5d29-4836-ab05-e0cc78542de7",
+      "name": "Send Article"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $json.body;\n\nreturn [{\n  json: {\n    campaignDescription: body.campaignDescription,\n    targetAudience: body.targetAudience,\n    tone: body.tone,\n    keywords: Array.isArray(body.keywords) ? body.keywords.join(\", \") : \"\",\n    maxLength: 300\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -128,
+        384
+      ],
+      "id": "693c1cda-3193-4b6c-85f2-d573febc8a7d",
+      "name": "Prepare Linkedin"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c7788ba7-6005-4ffc-bbf4-8187d57ef3e4",
+              "leftValue": "campaignDescription ",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "758e7515-9ac7-46f6-bdd3-ffdecb5cdd4e",
+              "leftValue": "targetAudience ",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "7c65344c-40a4-49ec-9887-c30f1ebf1886",
+              "leftValue": "keywords",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        96,
+        384
+      ],
+      "id": "4a736ff5-2e7c-4c2e-9cc1-0c706d4f646e",
+      "name": "Check Linkedin Data"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        288,
+        560
+      ],
+      "id": "f47e3e39-b9e9-47b4-9bfd-25c15be4192c",
+      "name": "Linkidin Error"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        400,
+        400
+      ],
+      "id": "b3b67ed9-c0af-489a-aa8d-462d74b9df29",
+      "name": "Preprocess Linkdin"
+    },
+    {
+      "parameters": {
+        "messages": {
+          "message": [
+            {
+              "content": "=Write a compelling LinkedIn post that drives engagement and builds credibility.\n\nContext:\nCampaign: {{ $json.campaignDescription }}\nTarget Audience: {{ $json.targetAudience }}\nDesired Tone: {{ $json.tone }}\nFocus Keywords: {{ $json.keywords }}\n\nStructure Requirements:\n- Length: 150–300 words\n- Opening: Start with a relatable hook or compelling question (first 2 lines)\n- Format: Short paragraphs (1–2 sentences each) with single-line breaks between them\n- Close with a clear call-to-action or thought-provoking question\n\nWriting Style Guidelines:\n- Write as if speaking to a colleague over coffee—conversational yet professional\n- Use \"you\" and \"I\" to create connection\n- Lead with insights, not credentials\n- Share specific examples or observations, not vague statements\n- Use concrete numbers or details when relevant\n- Avoid buzzwords like \"innovative,\" \"disruptive,\" \"synergy,\" \"leverage\"\n- No AI-generated phrases like \"delve into,\" \"navigate,\" \"unlock potential\"\n- No emojis within the text body\n\nEngagement Elements:\n- Include one unexpected insight or contrarian take\n- Use pattern breaks: short sentences mixed with slightly longer ones\n- Ask questions that prompt reflection, not just yes/no answers\n- Make it scannable—readers should grasp the main point in 10 seconds\n\nFormatting:\n- Start directly with the hook—no preamble\n- Hashtags at the end only (3–5 relevant tags)\n- No marketing jargon or sales language\n- No generic motivational speak\n\nOutput: Return ONLY the post text, ready to publish.\n"
+            }
+          ]
+        },
+        "options": {},
+        "requestOptions": {}
+      },
+      "type": "n8n-nodes-base.perplexity",
+      "typeVersion": 1,
+      "position": [
+        688,
+        384
+      ],
+      "id": "816b6704-4e54-4e70-897a-085f2613e76c",
+      "name": "LLM Linkedin",
+      "credentials": {
+        "perplexityApi": {
+          "id": "AGq1w6mYmxJnoEjV",
+          "name": "Perplexity account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "let post = \"\";\n\n// ✅ Correct extraction from Perplexity response\nif (\n  $json.choices &&\n  $json.choices[0] &&\n  $json.choices[0].message &&\n  typeof $json.choices[0].message.content === \"string\"\n) {\n  post = $json.choices[0].message.content.trim();\n}\n\n// ❌ Hard fail if content is missing\nif (!post) {\n  throw new Error(\"LinkedIn post content not found in model output\");\n}\n\nreturn [\n  {\n    json: {\n      linkedinPost: post,\n      characterCount: post.length\n    }\n  }\n];\n\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        960,
+        384
+      ],
+      "id": "eb39984d-cc93-490c-a99f-00e8849b5364",
+      "name": "Clean Linkdin"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        1488,
+        384
+      ],
+      "id": "815bc201-9aa8-4aba-9967-2a789501d1ff",
+      "name": "Send Linkedin Post"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $json.body;\n\nreturn [{\n  json: {\n    campaignDescription: body.campaignDescription,\n    targetAudience: body.targetAudience,\n    tone: body.tone,\n    keywords: body.keywords.join(\", \"),\n    tweets: 6\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -112,
+        752
+      ],
+      "id": "75b64c3e-8881-481b-8135-2ed4788a4b8d",
+      "name": "Prepare X Thread"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c7788ba7-6005-4ffc-bbf4-8187d57ef3e4",
+              "leftValue": "campaignDescription ",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "758e7515-9ac7-46f6-bdd3-ffdecb5cdd4e",
+              "leftValue": "targetAudience ",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "7c65344c-40a4-49ec-9887-c30f1ebf1886",
+              "leftValue": "keywords",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        96,
+        752
+      ],
+      "id": "75ede3b6-2d28-41b6-a672-1b7fb5f6ff21",
+      "name": "Check x Data"
+    },
+    {
+      "parameters": {
+        "messages": {
+          "message": [
+            {
+              "content": "=Write a high-engagement Twitter/X thread that captures attention and drives conversation.\n\nContext:\nCampaign: {{ $json.campaignDescription }}\nTarget Audience: {{ $json.targetAudience }}\nDesired Tone: {{ $json.tone }}\nFocus Keywords: {{ $json.keywords }}\nThread Length: {{ $json.tweets }} tweets\n\nThread Structure:\n- Tweet 1: Lead with a provocative statement, surprising fact, or relatable problem (hook must grab within 3 seconds)\n- Tweets 2-N: Each tweet should build on the previous one, creating natural flow\n- Final Tweet: End with a strong takeaway, call-to-action, or open question to spark replies\n- Each tweet must stand alone while contributing to the overall narrative\n\nCharacter & Formatting Rules:\n- Maximum 280 characters per tweet\n- Aim for 200-260 characters for optimal readability\n- Use line breaks within tweets for emphasis (when needed)\n- No thread numbering like \"1/6\" or \"🧵\"\n- No hashtag spam—maximum 1-2 hashtags in the entire thread (place in final tweet)\n- No emojis\n\nWriting Style Guidelines:\n- Write as if texting a knowledgeable friend—direct and authentic\n- Start sentences with strong verbs\n- Cut filler words: \"really,\" \"very,\" \"actually,\" \"just\"\n- Use short, punchy sentences (10-15 words ideal)\n- Mix statement lengths: alternate between one-liners and fuller thoughts\n- Avoid buzzwords: \"game-changer,\" \"revolutionary,\" \"ecosystem,\" \"space\" (industry)\n- No AI-speak: \"delve,\" \"landscape,\" \"realm,\" \"unlock,\" \"harness\"\n- No generic advice—be specific and actionable\n\nEngagement Tactics:\n- Include at least one counterintuitive insight that challenges common thinking\n- Use concrete examples or numbers instead of abstract concepts\n- Drop knowledge without being preachy\n- Create information gaps—make readers want to continue\n- Address the reader directly using \"you\" when appropriate\n- Ask one question in the thread to encourage replies\n\nThread Flow:\n- First 3 tweets must hook and establish credibility\n- Middle tweets deliver core value (insights, data, stories)\n- Last tweet reinforces the main point and prompts action\n- Each tweet should pass the \"scroll test\"—would you stop scrolling for this?\n\nAvoid These Patterns:\n- Don't start with \"Let's talk about...\"\n- Don't end with \"Agree? Let me know below!\"\n- Don't use generic motivational quotes\n- Don't explain obvious points\n- Don't write like a corporate press release\n- No thread announcements like \"Here's what you need to know:\"\n\nOutput Format:\nReturn tweets separated by TWO line breaks (double spacing between each tweet).\nNO additional commentary, NO thread indicators, ONLY the tweet content ready to post.\n"
+            }
+          ]
+        },
+        "options": {},
+        "requestOptions": {}
+      },
+      "type": "n8n-nodes-base.perplexity",
+      "typeVersion": 1,
+      "position": [
+        416,
+        736
+      ],
+      "id": "8340d69d-be76-46b4-ad2e-ddd6c2a8a599",
+      "name": "LLM X thread",
+      "credentials": {
+        "perplexityApi": {
+          "id": "AGq1w6mYmxJnoEjV",
+          "name": "Perplexity account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "let post = \"\";\n\n// 1️⃣ Extract content safely\nif (\n  Array.isArray($json.choices) &&\n  $json.choices[0]?.message?.content\n) {\n  post = $json.choices[0].message.content;\n}\n\n// Hard fail if missing (important for debugging)\nif (!post || typeof post !== \"string\") {\n  throw new Error(\"Twitter/X content missing from model output\");\n}\n\n/**\n * 2️⃣ Normalize escaped newlines (\\\\n → real newline)\n * Handles multiple escape layers safely\n */\nwhile (post.includes(\"\\\\n\")) {\n  post = post.replace(/\\\\n/g, \"\\n\");\n}\n\n// 3️⃣ Normalize CRLF\npost = post.replace(/\\r\\n|\\r/g, \"\\n\");\n\n// 4️⃣ Trim each line (Twitter hates ragged spacing)\npost = post\n  .split(\"\\n\")\n  .map(line => line.trim())\n  .join(\"\\n\");\n\n// 5️⃣ Collapse excessive blank lines (max 2)\npost = post.replace(/\\n{3,}/g, \"\\n\\n\");\n\n// 6️⃣ Final trim\npost = post.trim();\n\n// 7️⃣ Split into tweets (optional but useful)\nconst tweets = post\n  .split(\"\\n\\n\")\n  .map(t => t.trim())\n  .filter(Boolean);\n\nreturn [\n  {\n    json: {\n      twitterThread: tweets,\n      totalTweets: tweets.length,\n      fullText: post,\n      characterCount: post.length\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        704,
+        736
+      ],
+      "id": "6dac3422-dc94-4048-84ef-0d079fcffa97",
+      "name": "Format X Thread"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        1232,
+        736
+      ],
+      "id": "733fd3cf-b8fa-424d-bccf-b15dbfad4222",
+      "name": "Send X Thread"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        240,
+        912
+      ],
+      "id": "73654b24-699f-4af0-bf1b-0cbf07fab516",
+      "name": "X Thread Error"
+    },
+    {
+      "parameters": {
+        "jsCode": "let post = $json.linkedinPost;\n\n// Safety\nif (!post || typeof post !== \"string\") {\n  throw new Error(\"LinkedIn post is missing or invalid\");\n}\n\n/**\n * STEP 1: Aggressively normalize escaped newlines\n * This handles \\\\n, \\\\\\\\n, and mixed cases\n */\nwhile (post.includes(\"\\\\n\")) {\n  post = post.replace(/\\\\n/g, \"\\n\");\n}\n\n// STEP 2: Normalize CRLF\npost = post.replace(/\\r\\n|\\r/g, \"\\n\");\n\n// STEP 3: Remove markdown italics (*text*)\npost = post.replace(/\\*(.*?)\\*/g, \"$1\");\n\n// STEP 4: Trim spaces on each line\npost = post\n  .split(\"\\n\")\n  .map(line => line.trim())\n  .join(\"\\n\");\n\n// STEP 5: Collapse excessive blank lines\npost = post.replace(/\\n{3,}/g, \"\\n\\n\");\n\n// STEP 6: Ensure hashtags start on new paragraph\npost = post.replace(/\\n(#)/g, \"\\n\\n$1\");\n\n// Final trim\npost = post.trim();\n\nreturn [\n  {\n    json: {\n      linkedinPost: post,\n      characterCount: post.length\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1216,
+        384
+      ],
+      "id": "7548d422-7f19-4d76-acdb-af70c39dcdac",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "jsCode": "let thread = $json.twitterThread;\n\n// Safety check\nif (!Array.isArray(thread) || thread.length === 0) {\n  throw new Error(\"Twitter thread missing or invalid\");\n}\n\n// Helper: normalize text\nconst cleanText = (text) =>\n  text\n    // Normalize smart quotes & dashes\n    .replace(/[“”]/g, '\"')\n    .replace(/[‘’]/g, \"'\")\n    .replace(/—/g, \"-\")\n\n    // Remove markdown emphasis (*text*)\n    .replace(/\\*(.*?)\\*/g, \"$1\")\n\n    // Normalize whitespace\n    .replace(/\\s+/g, \" \")\n    .trim();\n\n// 1️⃣ Clean each tweet\nlet cleanedTweets = thread\n  .map(t => cleanText(t))\n  .filter(Boolean);\n\n// 2️⃣ Enforce 280 char safety (soft cut, no mid-word breaks)\ncleanedTweets = cleanedTweets.map(tweet => {\n  if (tweet.length <= 280) return tweet;\n\n  let trimmed = tweet.slice(0, 277);\n  trimmed = trimmed.slice(0, trimmed.lastIndexOf(\" \"));\n  return trimmed + \"...\";\n});\n\n// 3️⃣ Move hashtags to LAST tweet only\nlet hashtags = [];\ncleanedTweets = cleanedTweets.map(tweet => {\n  const found = tweet.match(/#[a-zA-Z0-9_]+/g);\n  if (found) {\n    hashtags.push(...found);\n    return tweet.replace(/#[a-zA-Z0-9_]+/g, \"\").trim();\n  }\n  return tweet;\n});\n\nhashtags = [...new Set(hashtags)].slice(0, 2); // max 2 hashtags\n\nif (hashtags.length) {\n  cleanedTweets[cleanedTweets.length - 1] +=\n    \"\\n\\n\" + hashtags.join(\" \");\n}\n\n// 4️⃣ Final output\nreturn [\n  {\n    json: {\n      twitterThread: cleanedTweets,\n      totalTweets: cleanedTweets.length,\n      characterCounts: cleanedTweets.map(t => t.length),\n      readyForPosting: true\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        960,
+        736
+      ],
+      "id": "53232bb7-e6e9-46bd-9f5b-038bead36476",
+      "name": "Code in JavaScript1"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $json.body || {};\n\nreturn [{\n  json: {\n    campaignDescription: body.campaignDescription,\n    targetAudience: body.targetAudience,\n    tone: body.tone || \"professional\",\n    keywords: Array.isArray(body.keywords)\n      ? body.keywords.join(\", \")\n      : \"\",\n    caseType: body.caseType || \"marketing automation\",\n    length: body.wordCount || 900\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -80,
+        1152
+      ],
+      "id": "854b7964-5c08-40ba-9940-177b91e5cea6",
+      "name": "Code in JavaScript2"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c7788ba7-6005-4ffc-bbf4-8187d57ef3e4",
+              "leftValue": "campaignDescription ",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "758e7515-9ac7-46f6-bdd3-ffdecb5cdd4e",
+              "leftValue": "targetAudience ",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "7c65344c-40a4-49ec-9887-c30f1ebf1886",
+              "leftValue": "keywords",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        192,
+        1152
+      ],
+      "id": "994512b1-b468-45fa-8056-7da91ea0eeec",
+      "name": "Check x Data1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        464,
+        1312
+      ],
+      "id": "4bb8f4b1-0ec4-49f1-bca6-d2af8d309d44",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "messages": {
+          "message": [
+            {
+              "content": "=You are a senior business analyst with 10+ years of experience writing detailed case studies for executive stakeholders, product teams, and client documentation.\n\nWrite a comprehensive, evidence-based case study that reads like internal business documentation—not marketing collateral. This should be the kind of case study a Product Manager presents to leadership or a consultant delivers to a client.\n\nCONTEXT INPUTS\nProject Description: {{ $json.campaignDescription }}\nTarget Audience: {{ $json.targetAudience }}\nDesired Tone: {{ $json.tone }}\nFocus Keywords: {{ $json.keywords }}\nTarget Length: {{ $json.length }} words\n\nCASE STUDY STRUCTURE (MANDATORY)\n\n1. Background\n- Set the context: What was the business environment or situation?\n- Who were the key stakeholders and what were their objectives?\n- Establish credibility by showing you understand the domain\n\n2. Problem Statement\n- Define the core challenge with specificity\n- Explain why this problem mattered (impact, urgency, constraints)\n- Identify the gap between current state and desired state\n- Include any quantitative baseline if relevant (avoid fake numbers)\n\n3. Approach & Strategy\n- Outline the methodology or framework used\n- Explain why this approach was chosen over alternatives\n- Detail the analysis process and decision-making criteria\n- Show strategic thinking, not just task execution\n\n4. Implementation\n- Walk through the execution phases chronologically\n- Highlight key decisions and their rationale\n- Address challenges encountered and how they were resolved\n- Include specific actions taken (workshops, interviews, testing, iterations)\n\n5. Outcomes & Observations\n- Present results in business terms (efficiency, clarity, usability, adoption)\n- Use qualitative language: \"improved significantly,\" \"reduced friction,\" \"enhanced visibility\"\n- Describe observable changes in behavior, processes, or systems\n- Connect outcomes back to the original problem statement\n\n6. Key Learnings\n- Share 3-4 insights gained from the project\n- Include what worked, what didn't, and what you'd do differently\n- Make learnings transferable to similar situations\n- Avoid generic lessons—be specific to this project's context\n\n7. Conclusion\n- Synthesize the main takeaway in 2-3 sentences\n- Reinforce the value created\n- Optionally hint at future opportunities or next phases\n\nWRITING STYLE GUIDELINES\n\nProfessional & Analytical:\n- Write as if documenting for a senior leadership review\n- Use precise business language: \"identified,\" \"analyzed,\" \"designed,\" \"implemented,\" \"validated\"\n- Demonstrate depth of thinking—show the \"why\" behind decisions\n- Balance detail with readability (avoid wall-of-text paragraphs)\n\nCredibility Markers:\n- Reference specific methods: stakeholder interviews, user research, data analysis, prototyping, pilot testing\n- Mention realistic constraints: budget, timeline, resource limitations, technical dependencies\n- Acknowledge trade-offs made during the project\n- Show iteration and refinement, not a perfect linear path\n\nRealistic Language:\n- Use phrases like: \"improved efficiency,\" \"reduced complexity,\" \"streamlined processes,\" \"enhanced user experience\"\n- Avoid vague claims: \"game-changing,\" \"revolutionary,\" \"best-in-class,\" \"world-class\"\n- No percentage improvements unless they're genuinely calculable from the project description\n- No fabricated ROI figures or conversion rates\n\nNatural Keyword Integration:\n- Weave {{ $json.keywords }} naturally into relevant sections\n- Use keywords where they fit the narrative context\n- Prioritize readability over keyword density\n- Never force keywords awkwardly into sentences\n\nSTRICT PROHIBITIONS\n- No emojis or special characters\n- No AI-typical phrases: \"delve into,\" \"landscape,\" \"realm,\" \"unlock,\" \"harness,\" \"leverage,\" \"ecosystem,\" \"seamless\"\n- No marketing language: \"cutting-edge,\" \"innovative,\" \"transform,\" \"disrupt,\" \"next-generation\"\n- No brand names, tool names, or company names (keep it generic: \"a project management platform,\" \"a data visualization tool\")\n- No fabricated statistics or made-up metrics\n- No promotional tone or sales pitch language\n- No meta-commentary like \"This case study demonstrates...\" or \"In this analysis, we explore...\"\n- No markdown code blocks or formatting syntax in output\n\nFORMATTING REQUIREMENTS\n- Use plain text with clear heading hierarchy\n- Keep paragraphs to 3-5 sentences maximum\n- Use bullet points sparingly, only when listing specific items\n- Maintain consistent professional tone throughout\n- Ensure smooth transitions between sections\n\nOUTPUT INSTRUCTION\nReturn ONLY the complete case study content with section headings clearly marked. Begin directly with \"Background\" heading—no preamble, no introduction about what you're providing. The output should be ready to paste into a document or website.\n"
+            }
+          ]
+        },
+        "options": {},
+        "requestOptions": {}
+      },
+      "type": "n8n-nodes-base.perplexity",
+      "typeVersion": 1,
+      "position": [
+        480,
+        1088
+      ],
+      "id": "1ae0b713-1324-4c04-a62e-a5b42bd9220a",
+      "name": "Message a model",
+      "credentials": {
+        "perplexityApi": {
+          "id": "AGq1w6mYmxJnoEjV",
+          "name": "Perplexity account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "    Case Study Generator\n\n          ",
+        "height": 80,
+        "width": 400,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        720,
+        944
+      ],
+      "id": "d24ccdd5-e10a-431b-9595-f03fee8d2595",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "jsCode": "let content = \"\";\n\n// 1️⃣ Extract content safely (Perplexity / Sonar format)\nif (\n  $json.choices &&\n  Array.isArray($json.choices) &&\n  $json.choices[0]?.message?.content\n) {\n  content = $json.choices[0].message.content;\n}\n\n// Safety check\nif (!content || typeof content !== \"string\") {\n  throw new Error(\"Case study content missing from model output\");\n}\n\n// 2️⃣ Remove <think> blocks if ever present\ncontent = content.replace(/<think>[\\s\\S]*?<\\/think>/gi, \"\");\n\n// 3️⃣ Remove citation markers like [1], [2], [12]\ncontent = content.replace(/\\[\\d+\\]/g, \"\");\n\n// 4️⃣ Remove trailing word count line\ncontent = content.replace(/\\(Word count:[^)]+\\)/gi, \"\");\n\n// 5️⃣ Normalize line endings\ncontent = content.replace(/\\r\\n/g, \"\\n\");\n\n// 6️⃣ Remove extra spaces before newlines\ncontent = content.replace(/[ \\t]+\\n/g, \"\\n\");\n\n// 7️⃣ Collapse excessive newlines (max 2)\ncontent = content.replace(/\\n{3,}/g, \"\\n\\n\");\n\n// 8️⃣ Trim start/end whitespace\ncontent = content.trim();\n\n// 9️⃣ Final safety: ensure clean paragraphs\nconst paragraphs = content\n  .split(\"\\n\\n\")\n  .map(p => p.trim())\n  .filter(Boolean);\n\n// 10️⃣ Rebuild clean content\nconst cleanCaseStudy = paragraphs.join(\"\\n\\n\");\n\nreturn [\n  {\n    json: {\n      caseStudy: cleanCaseStudy,\n      wordCount: cleanCaseStudy.split(/\\s+/).length\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        768,
+        1088
+      ],
+      "id": "072169fe-53b7-464a-8058-b8f5fb6bbf1c",
+      "name": "Code in JavaScript3"
+    },
+    {
+      "parameters": {
+        "jsCode": "let text = $json.caseStudy;\n\n// Safety check\nif (!text || typeof text !== \"string\") {\n  throw new Error(\"Case study text missing\");\n}\n\n// Normalize line endings\ntext = text.replace(/\\r\\n/g, \"\\n\");\n\n// Split into blocks\nconst blocks = text.split(\"\\n\\n\").map(b => b.trim()).filter(Boolean);\n\n// Known section headings (extend later if needed)\nconst sectionHeadings = [\n  \"Background\",\n  \"Problem Statement\",\n  \"Objectives\",\n  \"Approach & Strategy\",\n  \"Implementation\",\n  \"Outcomes & Observations\",\n  \"Key Learnings\",\n  \"Conclusion\"\n];\n\nlet html = \"\";\n\nfor (const block of blocks) {\n  // If block matches a known heading → H2\n  if (sectionHeadings.includes(block)) {\n    html += `<h2>${block}</h2>\\n`;\n  } \n  // Otherwise → paragraph\n  else {\n    html += `<p>${block}</p>\\n`;\n  }\n}\n\nreturn [\n  {\n    json: {\n      htmlCaseStudy: html.trim(),\n      wordCount: text.split(/\\s+/).length\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1024,
+        1088
+      ],
+      "id": "a0747f46-e22c-4f66-b864-20078449d7ba",
+      "name": "Code in JavaScript4"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        1296,
+        1088
+      ],
+      "id": "8decd0aa-b0bc-4344-87db-14e93c186ebb",
+      "name": "Respond to Webhook1"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Content Type Router": {
+      "main": [
+        [
+          {
+            "node": "Validate Campaign Input",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Has Keywords",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Prepare Linkedin",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Prepare X Thread",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Code in JavaScript2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Content Request Intake": {
+      "main": [
+        [
+          {
+            "node": "Content Type Router",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validate Campaign Input": {
+      "main": [
+        [
+          {
+            "node": "Set Campaign Data",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Campaign Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Campaign Data": {
+      "main": [
+        [
+          {
+            "node": "LLM Query",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LLM Query": {
+      "main": [
+        [
+          {
+            "node": "Clean Query",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Clean Query": {
+      "main": [
+        [
+          {
+            "node": "Fetch Suggestions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Suggestions": {
+      "main": [
+        [
+          {
+            "node": "Parse Keywords",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Keywords": {
+      "main": [
+        [
+          {
+            "node": "Merge Keywords",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge Keywords": {
+      "main": [
+        [
+          {
+            "node": "Send Keywords",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Keywords": {
+      "main": [
+        [
+          {
+            "node": "Check Article Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Article Data": {
+      "main": [
+        [
+          {
+            "node": "Prepare Article Input",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Article Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Article Input": {
+      "main": [
+        [
+          {
+            "node": "LLM Article",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LLM Article": {
+      "main": [
+        [
+          {
+            "node": "Clean Article",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Clean Article": {
+      "main": [
+        [
+          {
+            "node": "Format Article",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Article": {
+      "main": [
+        [
+          {
+            "node": "Send Article",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Linkedin": {
+      "main": [
+        [
+          {
+            "node": "Check Linkedin Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Linkedin Data": {
+      "main": [
+        [
+          {
+            "node": "Preprocess Linkdin",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Linkidin Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Preprocess Linkdin": {
+      "main": [
+        [
+          {
+            "node": "LLM Linkedin",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LLM Linkedin": {
+      "main": [
+        [
+          {
+            "node": "Clean Linkdin",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Clean Linkdin": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare X Thread": {
+      "main": [
+        [
+          {
+            "node": "Check x Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check x Data": {
+      "main": [
+        [
+          {
+            "node": "LLM X thread",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "X Thread Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LLM X thread": {
+      "main": [
+        [
+          {
+            "node": "Format X Thread",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format X Thread": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Send Linkedin Post",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "Send X Thread",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript2": {
+      "main": [
+        [
+          {
+            "node": "Check x Data1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check x Data1": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript3": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript4": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "6831fbae-3547-40d0-8c17-9caa54599fe5",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "fd4066d0f3eecb74ce6ea590c07e3e18bbf3146e3818c6effad8d6451bc66ec5"
+  },
+  "id": "J4efKHRKz5JVO4JK",
+  "tags": []
+}
