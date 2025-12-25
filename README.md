@@ -1,0 +1,1 @@
+# SEO-Content-Automation-Platform-n8n-Frontend-
