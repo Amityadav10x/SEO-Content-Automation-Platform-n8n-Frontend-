@@ -1,228 +1,190 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  
-</head>
-<body>
+# 🚀 SEO Content Automation Platform (Frontend + n8n + AI)
 
-<h1>🚀 SEO Content Automation Platform (Frontend + n8n + AI)</h1>
+A **full-stack, production-grade SEO content automation system** that transforms a single campaign idea into **multiple platform-ready content formats** using structured workflows, validation logic, and AI — without losing human control.
 
-<div class="section">
-  <p>
-    A <strong>full-stack, production-grade SEO content automation system</strong>
-    that transforms a single campaign idea into
-    <strong>multiple platform-ready content formats</strong> using structured workflows,
-    validation logic, and AI — without losing human control.
-  </p>
+This project is not just about generating content. It is about **building a reliable content system**.
 
-  <p>
-    This project is not just about generating content.<br/>
-    It is about <strong>building a reliable content system</strong>.
-  </p>
-</div>
+---
 
-<div class="section">
-  <h2>🔍 Problem Statement</h2>
-  <p>Most AI content tools fail in real-world usage because:</p>
-  <ul>
-    <li>Keywords are guessed, not research-driven</li>
-    <li>One prompt is reused for every platform</li>
-    <li>Outputs are unstructured and hard to edit</li>
-    <li>Regeneration overwrites context</li>
-    <li>No validation, no logic, no quality control</li>
-    <li>Frontend and automation are tightly coupled</li>
-  </ul>
+## 🔍 Problem Statement
 
-  <p>
-    This workflow solves those problems by treating
-    <strong>content generation as a system</strong>, not a single prompt.
-  </p>
-</div>
+Most AI content tools fail in real-world usage because:
 
-<div class="section">
-  <h2>🧠 What This System Does</h2>
-  <p>
-    The platform takes <strong>structured campaign inputs</strong> and produces
-    <strong>clean, editable, platform-specific content</strong>
-    through a logic-driven automation pipeline.
-  </p>
+- Keywords are guessed, not research-driven
+- One prompt is reused for every platform
+- Outputs are unstructured and hard to edit
+- Regeneration overwrites context
+- No validation, no logic, no quality control
+- Frontend and automation are tightly coupled
 
-  <h3>Inputs</h3>
-  <ul>
-    <li>Campaign description</li>
-    <li>Target audience</li>
-    <li>Tone</li>
-    <li>Step type (keywords / article / LinkedIn / X / case study)</li>
-  </ul>
+This workflow solves those problems by treating **content generation as a system**, not a single prompt.
 
-  <h3>Outputs</h3>
-  <ul>
-    <li>SEO keyword list (search-intent based)</li>
-    <li>SEO-ready long-form article</li>
-    <li>LinkedIn post</li>
-    <li>X (Twitter) thread</li>
-    <li>Structured case study</li>
-  </ul>
+---
 
-  <div class="highlight">
-    <strong>Each output is:</strong>
-    <ul>
-      <li>Cleaned and formatted</li>
-      <li>UI-ready</li>
-      <li>Editable</li>
-      <li>Regenerable without losing context</li>
-    </ul>
-  </div>
-</div>
+## 🧠 What This System Does
 
-<div class="section">
-  <h2>🏗️ High-Level Architecture</h2>
+The platform takes **structured campaign inputs** and produces **clean, editable, platform-specific content** through a logic-driven automation pipeline.
 
-  <h3>Frontend (UI Layer)</h3>
-  <ul>
-    <li>Campaign input form</li>
-    <li>Keyword preview & review</li>
-    <li>Content preview (Article / LinkedIn / X / Case Study)</li>
-    <li>Edit content</li>
-    <li>Regenerate content</li>
-  </ul>
+### Inputs
+- Campaign description
+- Target audience
+- Tone
+- Step type (keywords / article / LinkedIn / X / case study)
 
-  <h3>Backend & Automation (n8n)</h3>
-  <ul>
-    <li>Webhook-based API design</li>
-    <li>Validation & routing logic</li>
-    <li>Keyword research automation</li>
-    <li>Platform-specific content generation</li>
-    <li>Output cleanup and formatting</li>
-    <li>Structured JSON responses</li>
-  </ul>
+### Outputs
+- SEO keyword list (search-intent based)
+- SEO-ready long-form article
+- LinkedIn post
+- X (Twitter) thread
+- Structured case study
 
-  <h3>AI Layer</h3>
-  <ul>
-    <li>LLMs used with strict, role-specific prompts</li>
-    <li>No “one-prompt-fits-all” generation</li>
-    <li>Platform-native writing logic</li>
-  </ul>
-</div>
+Each output is:
+- Cleaned and formatted
+- UI-ready
+- Editable
+- Regenerable without losing context
 
-<div class="section">
-  <h2>🔄 Workflow Breakdown</h2>
+---
 
-  <h3>1️⃣ Input Validation</h3>
-  <ul>
-    <li>Ensures campaign description, audience, tone exist</li>
-    <li>Prevents broken or empty requests</li>
-    <li>Fails early with meaningful responses</li>
-  </ul>
+## 🔁 n8n Workflow (visual)
 
-  <h3>2️⃣ Keyword Research Engine</h3>
-  <ul>
-    <li>Generates a high-intent seed query</li>
-    <li>Fetches real search suggestions</li>
-    <li>Deduplicates and normalizes keywords</li>
-    <li>Ensures minimum keyword coverage</li>
-  </ul>
+<p align="center">
+  <img src="https://drive.google.com/uc?export=view&id=10IhNsMOewX-w2xPrEoA6SJdYPg0OGciP" alt="n8n workflow" width="900"/>
+  <br/>
+  <em>Figure: n8n automation workflow</em>
+</p>
 
-  <h3>3️⃣ Intelligent Routing</h3>
-  <p>
-    Uses <code>Switch</code> and <code>If</code> logic to route requests dynamically:
-  </p>
-  <ul>
-    <li>keywords</li>
-    <li>article</li>
-    <li>linkedin</li>
-    <li>x</li>
-    <li>case-study</li>
-  </ul>
-</div>
+---
 
-<div class="section">
-  <h2>✍️ Content Generation Modules</h2>
+## 🖼️ Frontend Screenshots
 
-  <h3>SEO Article Generator</h3>
-  <ul>
-    <li>Long-form, human-readable content</li>
-    <li>Proper H1 / H2 / H3 hierarchy</li>
-    <li>Natural keyword usage</li>
-    <li>HTML output for frontend rendering</li>
-  </ul>
+Below are the frontend screenshots embedded directly (no links shown). Each image is labeled for clarity.
 
-  <h3>LinkedIn Post Generator</h3>
-  <ul>
-    <li>Scroll-stopping hooks</li>
-    <li>Short, readable paragraphs</li>
-    <li>Clean formatting and hashtags</li>
-  </ul>
+<p align="center">
+  <img src="https://drive.google.com/uc?export=view&id=1Q4X0eSXnluWET47-7uDYJLYQy6lz-b9v" alt="Screenshot 1" width="900"/>
+  <br/>
+  <strong>Screenshot 1</strong>
+</p>
 
-  <h3>X (Twitter) Thread Generator</h3>
-  <ul>
-    <li>Tweet-by-tweet structure</li>
-    <li>Character-safe tweets</li>
-    <li>Optional CTA tweet</li>
-  </ul>
+<p align="center">
+  <img src="https://drive.google.com/uc?export=view&id=1a5KSyJXY8DTngGn2a5h8YWQCiGbyo3as" alt="Screenshot 2" width="900"/>
+  <br/>
+  <strong>Screenshot 2</strong>
+</p>
 
-  <h3>Case Study Generator</h3>
-  <ul>
-    <li>Background → Problem → Approach → Outcomes</li>
-    <li>Business-focused writing</li>
-    <li>Ideal for SaaS and B2B use cases</li>
-  </ul>
-</div>
+<p align="center">
+  <img src="https://drive.google.com/uc?export=view&id=1XsmkWhPcRZz0e4dbcHSBv_6wfcvrVJ9X" alt="Screenshot 3" width="900"/>
+  <br/>
+  <strong>Screenshot 3</strong>
+</p>
 
-<div class="section">
-  <h2>🧹 Cleanup & Formatting Layer</h2>
-  <ul>
-    <li>Removes markdown artifacts</li>
-    <li>Normalizes spacing and line breaks</li>
-    <li>Formats output for UI</li>
-    <li>Returns accurate word & character counts</li>
-  </ul>
-</div>
+---
 
-<div class="section">
-  <h2>🔁 Edit & Regenerate Support</h2>
-  <ul>
-    <li>Edit content directly in UI</li>
-    <li>Regenerate without losing context</li>
-    <li>Keywords and campaign data remain stable</li>
-  </ul>
-</div>
+## 🏗️ High-Level Architecture
 
-<div class="section">
-  <h2>⚙️ Tech Stack</h2>
-  <ul>
-    <li><strong>Frontend:</strong> Campaign input, preview, edit, regenerate</li>
-    <li><strong>Automation:</strong> n8n, Webhooks, Switch & If logic</li>
-    <li><strong>Custom Logic:</strong> JavaScript validation & cleanup nodes</li>
-    <li><strong>AI:</strong> Structured, platform-specific prompts</li>
-  </ul>
-</div>
+### Frontend (UI Layer)
+- Campaign input form
+- Keyword preview & review
+- Content preview (Article / LinkedIn / X / Case Study)
+- Edit content
+- Regenerate content
 
-<div class="section">
-  <h2>💡 Key Learnings</h2>
-  <ul>
-    <li>AI is only useful when wrapped in system design</li>
-    <li>Logic must come before generation</li>
-    <li>Platform-native content performs better</li>
-    <li>Human control is essential</li>
-  </ul>
-</div>
+### Backend & Automation (n8n)
+- Webhook-based API design
+- Validation & routing logic
+- Keyword research automation
+- Platform-specific content generation
+- Output cleanup and formatting
+- Structured JSON responses
 
-<div class="section">
-  <h2>📌 Why This Project Matters</h2>
-  <p>
-    This project demonstrates real-world automation thinking,
-    end-to-end system design, frontend-backend orchestration,
-    and responsible AI usage.
-  </p>
+### AI Layer
+- LLMs used with strict, role-specific prompts
+- No “one-prompt-fits-all” generation
+- Platform-native writing logic
 
-  <p>
-    <strong>This is not a prompt demo.</strong><br/>
-    It is a <strong>production-ready content engine</strong>.
-  </p>
-</div>
+---
 
-</body>
-</html>
+## 🔄 Workflow Breakdown
+
+### 1️⃣ Input Validation
+- Ensures campaign description, audience, tone exist
+- Prevents broken or empty requests
+- Fails early with meaningful responses
+
+### 2️⃣ Keyword Research Engine
+- Generates a high-intent seed query
+- Fetches real search suggestions
+- Deduplicates and normalizes keywords
+- Ensures minimum keyword coverage
+
+### 3️⃣ Intelligent Routing
+Uses `Switch` and `If` logic to route requests dynamically:
+- keywords
+- article
+- linkedin
+- x
+- case-study
+
+---
+
+## ✍️ Content Generation Modules
+
+### SEO Article Generator
+- Long-form, human-readable content
+- Proper H1 / H2 / H3 hierarchy
+- Natural keyword usage
+- HTML output for frontend rendering
+
+### LinkedIn Post Generator
+- Scroll-stopping hooks
+- Short, readable paragraphs
+- Clean formatting and hashtags
+
+### X (Twitter) Thread Generator
+- Tweet-by-tweet structure
+- Character-safe tweets
+- Optional CTA tweet
+
+### Case Study Generator
+- Background → Problem → Approach → Outcomes
+- Business-focused writing
+- Ideal for SaaS and B2B use cases
+
+---
+
+## 🧹 Cleanup & Formatting Layer
+- Removes markdown artifacts
+- Normalizes spacing and line breaks
+- Formats output for UI
+- Returns accurate word & character counts
+
+---
+
+## 🔁 Edit & Regenerate Support
+- Edit content directly in UI
+- Regenerate without losing context
+- Keywords and campaign data remain stable
+
+---
+
+## ⚙️ Tech Stack
+- **Frontend:** Campaign input, preview, edit, regenerate
+- **Automation:** n8n, Webhooks, Switch & If logic
+- **Custom Logic:** JavaScript validation & cleanup nodes
+- **AI:** Structured, platform-specific prompts
+
+---
+
+## 💡 Key Learnings
+- AI is only useful when wrapped in system design
+- Logic must come before generation
+- Platform-native content performs better
+- Human control is essential
+
+---
+
+## 📌 Why This Project Matters
+This project demonstrates real-world automation thinking, end-to-end system design, frontend-backend orchestration, and responsible AI usage.
+
+**This is not a prompt demo.**  
+It is a **production-ready content engine**.
