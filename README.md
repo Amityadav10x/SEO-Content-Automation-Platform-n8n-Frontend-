@@ -1,4 +1,4 @@
-# 🚀 SEO Content Automation Platform (Frontend + n8n + AI)
+# 🚀 Content Automation Platform (Frontend + n8n + AI)
 
 A **full-stack, production-grade SEO content automation system** that transforms a single campaign idea into **multiple platform-ready content formats** using structured workflows, validation logic, and AI — without losing human control.
 
